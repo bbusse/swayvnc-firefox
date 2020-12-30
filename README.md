@@ -39,3 +39,6 @@ $ vinagre [vnc-server:5900]
 
 ## TODO
 * Add tab rotation for the browser payload
+
+## Resources
+[geckodrive in Alpine](https://stackoverflow.com/questions/58738920/running-geckodriver-in-an-alpine-docker-container)
