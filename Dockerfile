@@ -50,7 +50,10 @@ RUN addgroup -S $USER && adduser -S $USER -G $USER -G abuild \
     # Get geckodriver
     && wget https://github.com/mozilla/geckodriver/releases/download/v${GECKODRIVER_VERSION}/geckodriver-v${GECKODRIVER_VERSION}-linux64.tar.gz \
     && tar -xzf geckodriver-v${GECKODRIVER_VERSION}-linux64.tar.gz -C /usr/bin \
-    && geckodriver --version
+    && geckodriver --version \
+
+    # Add latest webdriver-login script for firefox automation
+    && wget -P /usr/bin https://raw.githubusercontent.com/bbusse/webdriver-login/main/webdriver-login.py
 
 # Add entrypoint
 USER $USER
