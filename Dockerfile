@@ -3,7 +3,7 @@ FROM ghcr.io/bbusse/swayvnc:${SWAYVNC_VERSION}
 LABEL maintainer="Björn Busse <bj.rn@baerlin.eu>"
 LABEL org.opencontainers.image.source https://github.com/bbusse/swayvnc-firefox
 
-ENV ARCH="aarch64" \
+ENV ARCH="x86_64" \
     USER="firefox-user" \
     APK_ADD="firefox"
 
