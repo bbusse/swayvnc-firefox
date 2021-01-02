@@ -8,7 +8,8 @@ ARG GECKODRIVER_VERSION
 
 ENV ARCH="x86_64" \
     USER="firefox-user" \
-    APK_ADD="firefox"
+    APK_ADD="firefox" \
+    APK_DEL=""
 
 # Add packages
 USER root
@@ -16,12 +17,12 @@ USER root
 # Add application user and application
 # Cleanup: Remove files and users
 RUN addgroup -S $USER && adduser -S $USER -G $USER -G abuild \
-    && apk add --no-cache $APK_ADD \
-    &&rm -rf \
+    && apk add --no-cache ${APK_ADD} \
+    && apk del --no-cache ${APK_DEL} \
+    && rm -rf \
       /usr/share/man/* \
       /usr/includes/* \
       /var/cache/apk/* \
-    && apk del --no-cache ${APK_DEL} \
     && deluser --remove-home daemon \
     && deluser --remove-home adm \
     && deluser --remove-home lp \
