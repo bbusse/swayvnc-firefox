@@ -1,7 +1,10 @@
 ARG SWAYVNC_VERSION=latest
+ARG GECKODRIVER_VERSION=0.28.0
 FROM ghcr.io/bbusse/swayvnc:${SWAYVNC_VERSION}
 LABEL maintainer="Björn Busse <bj.rn@baerlin.eu>"
 LABEL org.opencontainers.image.source https://github.com/bbusse/swayvnc-firefox
+
+ARG GECKODRIVER_VERSION
 
 ENV ARCH="x86_64" \
     USER="firefox-user" \
@@ -42,7 +45,12 @@ RUN addgroup -S $USER && adduser -S $USER -G $USER -G abuild \
     && deluser --remove-home vpopmail \
     && deluser --remove-home ntp \
     && deluser --remove-home smmsp \
-    && deluser --remove-home guest
+    && deluser --remove-home guest \
+
+    # Get geckodriver
+    && wget https://github.com/mozilla/geckodriver/releases/download/v${GECKODRIVER_VERSION}/geckodriver-v${GECKODRIVER_VERSION}-linux64.tar.gz \
+    && tar -xzf geckodriver-v${GECKODRIVER_VERSION}-linux64.tar.gz -C /usr/bin \
+    && geckodriver --version
 
 # Add entrypoint
 USER $USER
