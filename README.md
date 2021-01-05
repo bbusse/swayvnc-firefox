@@ -25,8 +25,8 @@ export LISTEN_ADDRESS="127.0.0.1"; podman run -e XDG_RUNTIME_DIR=/tmp \
 Run commands with swaymsg by using socat to put them on the network
 Replace $IP with the actual IP you want to listen on
 ```
-$ socat UNIX-LISTEN:/tmp/swayipc,fork TCP:$IP:7023
-$ SWAYSOCK=/tmp/swayipc swaymsg command exec "firefox [URL]"
+$ socat UNIX-LISTEN:/tmp/sway-ipc.sock,fork TCP:$IP:7023
+$ SWAYSOCK=/tmp/swayipc swaymsg exec "firefox [URL]"
 ```
 
 ## Connect
