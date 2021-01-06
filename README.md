@@ -15,12 +15,18 @@ $ podman build -t swayvnc-firefox .
 ## Run Container
 Run container
 ```
-export LISTEN_ADDRESS="127.0.0.1"; podman run -e XDG_RUNTIME_DIR=/tmp \
-             -e WLR_BACKENDS=headless \
-             -e WLR_LIBINPUT_NO_DEVICES=1 \
-             -e SWAYSOCK=/tmp/sway-ipc.sock \
-             -p${LISTEN_ADDRESS}:5900:5900 \
-             -p${LISTEN_ADDRESS}:7023:7023 swayvnc-firefox
+export LISTEN_ADDRESS="127.0.0.1";  
+podman run -e XDG_RUNTIME_DIR=/tmp \
+           -e WLR_BACKENDS=headless \
+           -e WLR_LIBINPUT_NO_DEVICES=1 \
+           -e SWAYSOCK=/tmp/sway-ipc.sock \
+           -e MOZ_ENABLE_WAYLAND=1 \
+           -e TARGET="grafana" \
+           -e URL="https://grafana.example.com" \
+           -e LOGIN_USER="foo" \
+           -e LOGIN_PW="c3VwZXJTZWNyZXRQYXNzd3JvZAo=" \
+           -p${LISTEN_ADDRESS}:5900:5900 \
+           -p${LISTEN_ADDRESS}:7023:7023 swayvnc-firefox
 ```
 
 ## Run Commands
@@ -43,4 +49,6 @@ $ vinagre [vnc-server:5900]
 * Add tab rotation for the browser payload
 
 ## Resources
-[geckodriver in Alpine](https://stackoverflow.com/questions/58738920/running-geckodriver-in-an-alpine-docker-container)
+[W3C WebDriver Specification](https://w3c.github.io/webdriver/)
+[Selenium/WebDriver Documentation](ww.selenium.dev/documentation/en/getting_started_with_webdriver)
+[Mozilla geckodriver](https://github.com/mozilla/geckodriver)
