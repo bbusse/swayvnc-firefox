@@ -49,6 +49,6 @@ $ vinagre [vnc-server:5900]
 * Add tab rotation for the browser payload
 
 ## Resources
-[W3C WebDriver Specification](https://w3c.github.io/webdriver/)
-[Selenium/WebDriver Documentation](ww.selenium.dev/documentation/en/getting_started_with_webdriver)
-[Mozilla geckodriver](https://github.com/mozilla/geckodriver)
+[W3C WebDriver Specification](https://w3c.github.io/webdriver/)  
+[Selenium/WebDriver Documentation](ww.selenium.dev/documentation/en/getting_started_with_webdriver)  
+[Mozilla geckodriver](https://github.com/mozilla/geckodriver)  
