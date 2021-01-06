@@ -1,3 +1,5 @@
+#!/usr/bin/env sh
+
 export LISTEN_ADDRESS="127.0.0.1";
 
 podman run -e XDG_RUNTIME_DIR=/tmp \
