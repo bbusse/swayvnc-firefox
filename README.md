@@ -1,4 +1,6 @@
-# swayvnc-firefox - VNC Desktop Browser Session in a Container
+# swayvnc-firefox  
+VNC Desktop Browser Session in a Container
+---
 swayvnc-firefox uses [Sway](https://swaywm.org) with [wayvnc](https://github.com/any1/wayvnc) to create a headless wayland desktop with a browser payload (firefox), to display one or several web pages
 
 ## Build
