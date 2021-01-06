@@ -8,8 +8,9 @@ ARG GECKODRIVER_VERSION
 
 ENV ARCH="x86_64" \
     USER="firefox-user" \
-    APK_ADD="firefox" \
-    APK_DEL=""
+    APK_ADD="python3 py3-pip firefox" \
+    APK_DEL="" \
+    PIP_ADD="selenium"
 
 # Add packages
 USER root
@@ -19,6 +20,7 @@ USER root
 RUN addgroup -S $USER && adduser -S $USER -G $USER -G abuild \
     && apk add --no-cache ${APK_ADD} \
     && apk del --no-cache ${APK_DEL} \
+    && pip3 install ${PIP_ADD} \
     && rm -rf \
       /usr/share/man/* \
       /usr/includes/* \
@@ -55,7 +57,8 @@ RUN addgroup -S $USER && adduser -S $USER -G $USER -G abuild \
     && geckodriver --version \
 
     # Add latest webdriver-login script for firefox automation
-    && wget -P /usr/bin https://raw.githubusercontent.com/bbusse/webdriver-login/main/webdriver-login.py
+    && wget -P /usr/bin https://raw.githubusercontent.com/bbusse/webdriver-login/main/webdriver-login.py \
+    && chmod +x /usr/bin/webdriver-login.py
 
 # Add entrypoint
 USER $USER
