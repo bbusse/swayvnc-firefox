@@ -60,6 +60,9 @@ RUN addgroup -S $USER && adduser -S $USER -G $USER -G abuild \
     && wget -P /usr/bin https://raw.githubusercontent.com/bbusse/webdriver-login/main/webdriver-login.py \
     && chmod +x /usr/bin/webdriver-login.py
 
+# Copy sway config
+COPY config /etc/sway/config
+
 # Add entrypoint
 USER $USER
 COPY entrypoint.sh /
