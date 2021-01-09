@@ -198,4 +198,4 @@ bindsym $mod+r mode "resize"
 
 include /etc/sway/config.d/*
 exec wayvnc 0.0.0.0 5910
-exec webdriver-login.py
+exec controller.py
