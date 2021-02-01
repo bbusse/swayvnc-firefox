@@ -60,7 +60,7 @@ if __name__ == "__main__":
         print('Failed to start desktop session: ', cmd_sway)
         sys.exit(1)
 
-    print(list_processes())
+    print(list_processes().decode())
 
     # Start browser
     p = Popen(['webdriver-login.py'], stdout=PIPE, stderr=PIPE, env=env, start_new_session=True, close_fds=False)
