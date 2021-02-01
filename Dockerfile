@@ -17,6 +17,8 @@ USER root
 # Add application user and application
 # Cleanup: Remove files and users
 RUN addgroup -S $USER && adduser -S $USER -G $USER -G abuild \
+    # https://gitlab.alpinelinux.org/alpine/aports/-/issues/11768
+    && sed -i -e 's/https/http/' /etc/apk/repositories \
     && apk add --no-cache ${APK_ADD} \
     && apk del --no-cache ${APK_DEL} \
     && rm -rf \
