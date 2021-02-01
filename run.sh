@@ -1,9 +1,9 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 set -euo pipefail
 
 export CONTAINER=swayvnc-firefox
-export LISTEN_ADDRESS="127.0.0.1"
+export LISTEN_ADDRESS="[::1]"
 export VERBOSE=1
 
 readonly SCRIPT_NAME=$(basename $0)
