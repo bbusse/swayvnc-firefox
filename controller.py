@@ -28,7 +28,8 @@ def healthy():
 # Liveness
 @app.route('/healthz')
 def healthz():
-    probe_liveness()
+    return probe_liveness()
+
 
 def list_processes():
     ps = subprocess.Popen(['ps', 'aux'], stdout=subprocess.PIPE).communicate()[0]
@@ -42,7 +43,7 @@ def probe_liveness():
 if __name__ == "__main__":
 
     parser = configargparse.ArgParser( description="")
-    parser.add_argument('--listen-address', dest='listen_address', help="The address to listen on", type=str, default="::1")
+    parser.add_argument('--listen-address', dest='listen_address', help="The address to listen on", type=str, default="0.0.0.0")
     parser.add_argument('--debug', dest='debug', help="Show debug output", type=bool, default=False)
     args = parser.parse_args()
 
