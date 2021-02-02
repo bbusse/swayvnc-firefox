@@ -42,10 +42,12 @@ def probe_liveness():
 if __name__ == "__main__":
 
     parser = configargparse.ArgParser( description="")
-    parser.add_argument('--listen-address', dest='listen_address', help="The application to log into", type=str, default="::1")
+    parser.add_argument('--listen-address', dest='listen_address', help="The address to listen on", type=str, default="::1")
+    parser.add_argument('--debug', dest='debug', help="Show debug output", type=bool, default=False)
     args = parser.parse_args()
 
     listen_address = args.listen_address
+    debug = args.debug
 
     env = os.environ.copy()
     for k, v in env.items():
@@ -60,7 +62,8 @@ if __name__ == "__main__":
         print('Failed to start desktop session: ', cmd_sway)
         sys.exit(1)
 
-    print(list_processes().decode())
+    if debug:
+        print(list_processes().decode())
 
     # Start browser
     p = Popen(['webdriver-login.py'], stdout=PIPE, stderr=PIPE, env=env, start_new_session=True, close_fds=False)
