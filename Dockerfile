@@ -1,5 +1,5 @@
 ARG SWAYVNC_VERSION=latest
-ARG GECKODRIVER_VERSION=0.28.0
+ARG GECKODRIVER_VERSION=0.29.0
 FROM ghcr.io/bbusse/swayvnc:${SWAYVNC_VERSION}
 LABEL maintainer="Björn Busse <bj.rn@baerlin.eu>"
 LABEL org.opencontainers.image.source https://github.com/bbusse/swayvnc-firefox
