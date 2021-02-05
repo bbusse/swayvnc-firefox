@@ -56,9 +56,9 @@ RUN addgroup -S $USER && adduser -S $USER -G $USER -G abuild \
     && rm geckodriver-v${GECKODRIVER_VERSION}-linux64.tar.gz \
     && geckodriver --version \
 
-    # Add latest webdriver-login script for firefox automation
-    && wget -P /usr/local/bin https://raw.githubusercontent.com/bbusse/webdriver-login/main/webdriver-login.py \
-    && chmod +x /usr/local/bin/webdriver-login.py
+    # Add latest webdriver-util script for firefox automation
+    && wget -P /usr/local/bin https://raw.githubusercontent.com/bbusse/webdriver-util/main/webdriver-util.py \
+    && chmod +x /usr/local/bin/webdriver-util.py
 
 # Copy sway config
 COPY config /etc/sway/config
