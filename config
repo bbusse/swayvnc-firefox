@@ -197,5 +197,3 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 include /etc/sway/config.d/*
-exec wayvnc 0.0.0.0 $WAYVNC_PORT
-exec controller.py --debug=$DEBUG
