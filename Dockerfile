@@ -58,7 +58,7 @@ RUN addgroup -S $USER && adduser -S $USER -G $USER -G abuild \
 
     # Add latest webdriver-util script for firefox automation
     && wget -P /usr/local/bin https://raw.githubusercontent.com/bbusse/webdriver-util/main/webdriver_util.py \
-    && chmod +x /usr/local/bin/webdriver_util.py
+    && chmod +x /usr/local/bin/webdriver_util.py \
 
     # Run controller.py
     && echo "exec controller.py --debug=$DEBUG" >> /etc/sway/config.d/firefox
