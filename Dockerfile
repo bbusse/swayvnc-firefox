@@ -63,9 +63,6 @@ RUN addgroup -S $USER && adduser -S $USER -G $USER -G abuild \
     # Run controller.py
     && echo "exec controller.py --debug=$DEBUG" >> /etc/sway/config.d/firefox \
 
-# Copy sway config
-COPY config /etc/sway/config
-
 # Add entrypoint
 USER $USER
 COPY controller.py /usr/local/bin
