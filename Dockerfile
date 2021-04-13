@@ -61,7 +61,7 @@ RUN addgroup -S $USER && adduser -S $USER -G $USER -G abuild \
     && chmod +x /usr/local/bin/webdriver_util.py
 
     # Run controller.py
-    && echo "exec controller.py --debug=$DEBUG" >> /etc/sway/config.d/firefox \
+    && echo "exec controller.py --debug=$DEBUG" >> /etc/sway/config.d/firefox
 
 # Add entrypoint
 USER $USER
