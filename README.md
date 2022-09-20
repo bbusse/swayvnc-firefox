@@ -41,7 +41,7 @@ Use a vnc client to connect to the server
 ```
 $ wlvncc <vnc-server>
 # or
-$ vinagre [vnc-server:5900]
+$ vinagre [vnc-server:5910]
 ```
 
 ## TODO
