@@ -47,6 +47,7 @@ ${executor} run -e XDG_RUNTIME_DIR=/tmp \
                 -e SWAYSOCK=/tmp/sway-ipc.sock \
                 -e MOZ_ENABLE_WAYLAND=1 \
                 -e URL="${DEFAULT_URL}" \
+                -e BROWSER_FULLSCREEN=1 \
                 -p${LISTEN_ADDRESS}:5910:5910 \
                 -p${LISTEN_ADDRESS}:7000:7000 \
                 -p${LISTEN_ADDRESS}:7023:7023 \
