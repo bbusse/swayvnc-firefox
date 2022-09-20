@@ -44,7 +44,7 @@ RUN addgroup -S $USER && adduser -S $USER -G $USER \
     && wget -O /tmp/requirements_controller.txt https://raw.githubusercontent.com/bbusse/stream-controller/main/requirements.txt \
 
     # Run controller.py
-    && echo "exec controller.py --debug=$DEBUG" >> /etc/sway/config.d/firefox
+    && echo "exec controller.py --stream-source=vnc-browser --debug=$DEBUG" >> /etc/sway/config.d/firefox
 
 USER $USER
 
