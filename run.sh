@@ -3,10 +3,15 @@
 set -euo pipefail
 
 export CONTAINER=swayvnc-firefox
+readonly CONTAINER
 export LISTEN_ADDRESS="[::1]"
+readonly LISTEN_ADDRESS
 export VERBOSE=1
-
-readonly SCRIPT_NAME=$(basename $0)
+readonly VERBOSE
+export DEFAULT_URL="https://uhr.ptb.de/"
+readonly DEFAULT_URL
+SCRIPT_NAME=$(basename $0)
+readonly SCRIPT_NAME
 
 
 log() {
@@ -41,10 +46,7 @@ ${executor} run -e XDG_RUNTIME_DIR=/tmp \
                 -e WLR_LIBINPUT_NO_DEVICES=1 \
                 -e SWAYSOCK=/tmp/sway-ipc.sock \
                 -e MOZ_ENABLE_WAYLAND=1 \
-                -e TARGET="grafana" \
-                -e URL="https://grafana.example.com" \
-                -e LOGIN_USER="foo" \
-                -e LOGIN_PW="c3VwZXJTZWNyZXRQYXNzd3JvZAo=" \
+                -e URL="${DEFAULT_URL}" \
                 -p${LISTEN_ADDRESS}:5910:5910 \
                 -p${LISTEN_ADDRESS}:7000:7000 \
                 -p${LISTEN_ADDRESS}:7023:7023 \
