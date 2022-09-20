@@ -11,16 +11,17 @@ ENV ARCH="x86_64" \
     APK_ADD="python3 py3-pip firefox" \
     APK_DEL=""
 
-# Add packages
 USER root
 
 # Add application user and application
 # Cleanup: Remove files and users
-RUN addgroup -S $USER && adduser -S $USER -G $USER -G abuild \
+RUN addgroup -S $USER && adduser -S $USER -G $USER \
     # https://gitlab.alpinelinux.org/alpine/aports/-/issues/11768
     && sed -i -e 's/https/http/' /etc/apk/repositories \
+    # Add packages
     && apk add --no-cache ${APK_ADD} \
     && apk del --no-cache ${APK_DEL} \
+    # Cleanup: Remove files
     && rm -rf \
       /usr/share/man/* \
       /usr/includes/* \
@@ -47,8 +48,8 @@ RUN addgroup -S $USER && adduser -S $USER -G $USER -G abuild \
 
 USER $USER
 
-RUN pip3 install --user -r requirements_controller.txt
-RUN pip3 install --user -r requirements_webdriver.txt
+RUN pip3 install --user -r /tmp/requirements_controller.txt
+RUN pip3 install --user -r /tmp/requirements_webdriver.txt
 
 COPY entrypoint.sh /
 ENTRYPOINT ["/entrypoint.sh"]
