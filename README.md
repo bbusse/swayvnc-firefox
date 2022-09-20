@@ -13,7 +13,6 @@ $ podman build -t swayvnc-firefox .
 ```
 
 ## Run Container
-Run container
 ```
 export LISTEN_ADDRESS="127.0.0.1";  
 podman run -e XDG_RUNTIME_DIR=/tmp \
@@ -38,7 +37,7 @@ $ SWAYSOCK=/tmp/swayipc swaymsg exec "firefox [URL]"
 ```
 
 ## Connect
-Use some vnc client to connect the server
+Use a vnc client to connect to the server
 ```
 $ wlvncc <vnc-server>
 # or
