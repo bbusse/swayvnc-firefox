@@ -25,30 +25,6 @@ RUN addgroup -S $USER && adduser -S $USER -G $USER -G abuild \
       /usr/share/man/* \
       /usr/includes/* \
       /var/cache/apk/* \
-    && deluser --remove-home daemon \
-    && deluser --remove-home adm \
-    && deluser --remove-home lp \
-    && deluser --remove-home sync \
-    && deluser --remove-home shutdown \
-    && deluser --remove-home halt \
-    && deluser --remove-home postmaster \
-    && deluser --remove-home cyrus \
-    && deluser --remove-home mail \
-    && deluser --remove-home news \
-    && deluser --remove-home uucp \
-    && deluser --remove-home operator \
-    && deluser --remove-home man \
-    && deluser --remove-home cron \
-    && deluser --remove-home ftp \
-    && deluser --remove-home sshd \
-    && deluser --remove-home at \
-    && deluser --remove-home squid \
-    && deluser --remove-home xfs \
-    && deluser --remove-home games \
-    && deluser --remove-home vpopmail \
-    && deluser --remove-home ntp \
-    && deluser --remove-home smmsp \
-    && deluser --remove-home guest \
 
     # Get geckodriver
     && wget https://github.com/mozilla/geckodriver/releases/download/v${GECKODRIVER_VERSION}/geckodriver-v${GECKODRIVER_VERSION}-linux64.tar.gz \
@@ -59,14 +35,20 @@ RUN addgroup -S $USER && adduser -S $USER -G $USER -G abuild \
     # Add latest webdriver-util script for firefox automation
     && wget -P /usr/local/bin https://raw.githubusercontent.com/bbusse/webdriver-util/main/webdriver_util.py \
     && chmod +x /usr/local/bin/webdriver_util.py \
+    && wget -O /tmp/requirements_webdriver.txt https://raw.githubusercontent.com/bbusse/webdriver-util/main/requirements.txt \
+
+    # Add stream-controller for stream handling
+    && wget -P /usr/local/bin https://raw.githubusercontent.com/bbusse/stream-controller/main/controller.py \
+    && chmod +x /usr/local/bin/controller.py \
+    && wget -O /tmp/requirements_controller.txt https://raw.githubusercontent.com/bbusse/stream-controller/main/requirements.txt \
 
     # Run controller.py
     && echo "exec controller.py --debug=$DEBUG" >> /etc/sway/config.d/firefox
 
-# Add entrypoint
 USER $USER
-COPY controller.py /usr/local/bin
-COPY requirements.txt /
-RUN pip3 install --user -r requirements.txt
+
+RUN pip3 install --user -r requirements_controller.txt
+RUN pip3 install --user -r requirements_webdriver.txt
+
 COPY entrypoint.sh /
 ENTRYPOINT ["/entrypoint.sh"]
