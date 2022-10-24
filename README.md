@@ -26,7 +26,7 @@ $ export LISTEN_ADDRESS="127.0.0.1" \
              -e LOGIN_PW="c3VwZXJTZWNyZXRQYXNzd3JvZAo=" \
              -e BROWSER_FULLSCREEN=1 \
              -p${LISTEN_ADDRESS}:5000:5000 \
-             -p${LISTEN_ADDRESS}:5900:5900 \
+             -p${LISTEN_ADDRESS}:5100:5100 \
              -p${LISTEN_ADDRESS}:7023:7023 swayvnc-firefox
 # or
 $ ./run.sh
