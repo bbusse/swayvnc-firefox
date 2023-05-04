@@ -1,21 +1,24 @@
-name: Docker Image CI
+name: Build Container Image
 
 on:
   push:
-    branches: [ main ]
     paths-ignore:
       - '**.md'
+    branches:
+      - '**'
   pull_request:
-    branches: [ main ]
     paths-ignore:
       - '**.md'
+    branches:
+      - '**'
+  workflow_dispatch:
 
 jobs:
 
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3.0.2
+    - uses: actions/checkout@v3
 
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v2
@@ -32,9 +35,10 @@ jobs:
 
     - name: Build and push to ghcr
       id: docker_build
-      uses: docker/build-push-action@v3
+      uses: docker/build-push-action@v4
       with:
-        platforms: linux/amd64
+        platforms: linux/arm64, linux/amd64
+        file: Containerfile
         push: true
         tags: ghcr.io/bbusse/swayvnc-firefox:latest
 
