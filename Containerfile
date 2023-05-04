@@ -8,7 +8,7 @@ ARG GECKODRIVER_VERSION
 
 ENV ARCH="x86_64" \
     USER="firefox-user" \
-    APK_ADD="libc-dev libxkbcommon-dev gcc git python3 python3-dev py3-pip py3-wheel firefox" \
+    APK_ADD="libc-dev libffi-dev libxkbcommon-dev gcc git python3 python3-dev py3-pip py3-wheel firefox" \
     APK_DEL=""
 
 USER root
