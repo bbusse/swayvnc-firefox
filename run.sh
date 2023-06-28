@@ -51,4 +51,5 @@ ${executor} run -e XDG_RUNTIME_DIR=/tmp \
                 -p${LISTEN_ADDRESS}:5910:5910 \
                 -p${LISTEN_ADDRESS}:7000:7000 \
                 -p${LISTEN_ADDRESS}:7023:7023 \
+                --privileged \
                 ${CONTAINER}
