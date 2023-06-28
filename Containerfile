@@ -30,13 +30,15 @@ RUN addgroup -S $USER && adduser -S $USER -G $USER \
     && chmod +x /usr/local/bin/webdriver_util.py \
     && wget -O /tmp/requirements_webdriver.txt https://raw.githubusercontent.com/bbusse/webdriver-util/main/requirements.txt \
 
+    && git clone -b dev https://github.com/bbusse/python-wayland /usr/local/src/python-wayland \
+
     # Add iss-display-controller for view handling
     && wget -P /usr/local/bin https://raw.githubusercontent.com/OpsBoost/iss-display-controller/dev/controller.py \
     && chmod +x /usr/local/bin/controller.py \
     && wget -O /tmp/requirements_controller.txt https://raw.githubusercontent.com/OpsBoost/iss-display-controller/dev/requirements.txt \
 
     # Run controller.py
-    && echo "exec controller.py --stream-source=vnc-browser --debug=$DEBUG" >> /etc/sway/config.d/firefox
+    && echo "exec controller.py --uri="iss-weather://" --stream-source=vnc-browser --debug=$DEBUG" >> /etc/sway/config.d/firefox
 
 USER $USER
 
