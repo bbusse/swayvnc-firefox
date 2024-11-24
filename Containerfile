@@ -4,9 +4,10 @@ LABEL maintainer="Björn Busse <bj.rn@baerlin.eu>"
 LABEL org.opencontainers.image.source https://github.com/bbusse/swayvnc-firefox
 
 ENV ARCH="x86_64" \
-    USER="firefox-user" \
+    USER="swayvnc" \
     APK_ADD="libc-dev libffi-dev libxkbcommon-dev gcc geckodriver@testing git python3 python3-dev py3-pip py3-wheel firefox" \
-    APK_DEL=""
+    APK_DEL="" \
+    PATH_VENV="/home/swayvnc/venv"
 
 USER root
 
@@ -38,12 +39,17 @@ RUN addgroup -S $USER && adduser -S $USER -G $USER \
     && wget -O /tmp/requirements_controller.txt https://raw.githubusercontent.com/OpsBoost/iss-display-controller/dev/requirements.txt \
 
     # Run controller.py
-    && echo "exec controller.py --uri="iss-weather://" --stream-source=vnc-browser --debug=$DEBUG" >> /etc/sway/config.d/firefox
+    && echo "exec /usr/bin/env sh -c 'source ${PATH_VENV}/bin/activate && controller.py --uri=iss-weather:// --stream-source=vnc-browser'" \
+    > /etc/sway/config.d/firefox
 
 USER $USER
 
-RUN pip3 install --user -r /tmp/requirements_controller.txt
-RUN pip3 install --user -r /tmp/requirements_webdriver.txt
+RUN mkdir -p ${PATH_VENV} && \
+    python3 -m venv /home/swayvnc/venv && \
+    . ${PATH_VENV}/bin/activate && \
+    pip3 install -r /tmp/requirements_controller.txt && \
+    pip3 install -r /tmp/requirements_webdriver.txt && \
+    deactivate
 
 COPY entrypoint.sh /
 ENTRYPOINT ["/entrypoint.sh"]
