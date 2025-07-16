@@ -18,7 +18,7 @@ jobs:
     uses: bbusse/github-workflows/.github/workflows/container-build-push.yaml@dev
     with:
       image_name: 'swayvnc-firefox'
-      image_repository: 'bbusse/swayvnc-firefox'
-      image_tags: ghcr.io/bbusse/swayvnc-firefox:${{ github.sha }},ghcr.io/bbusse/swayvnc-firefox:latest
+      image_repository: 'ghcr.io/bbusse'
+      #image_tags: ghcr.io/bbusse/swayvnc-firefox:${{ github.sha }},ghcr.io/bbusse/swayvnc-firefox:latest
       container_registry: 'ghcr'
       container_push_to_registry: true
