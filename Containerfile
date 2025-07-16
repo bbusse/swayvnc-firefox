@@ -39,7 +39,7 @@ RUN addgroup -S $USER && adduser -S $USER -G $USER \
     && wget -O /tmp/requirements_controller.txt https://raw.githubusercontent.com/OpsBoost/iss-display-controller/dev/requirements.txt \
 
     # Run controller.py
-    && echo "exec /usr/bin/env sh -c 'source ${PATH_VENV}/bin/activate && controller.py --uri=iss-weather:// --stream-source=vnc-browser'" \
+    && echo "exec /usr/bin/env sh -c 'source ${PATH_VENV}/bin/activate && controller.py --stream-source=vnc-browser'" \
     > /etc/sway/config.d/firefox
 
 USER $USER
