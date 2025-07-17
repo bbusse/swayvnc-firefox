@@ -9,9 +9,9 @@ export LISTEN_ADDRESS="127.0.0.1"
 readonly LISTEN_ADDRESS
 export VERBOSE=1
 readonly VERBOSE
-export DEFAULT_URLS="https://uhr.ptb.de/"
+export DEFAULT_URLS="|https://uhr.ptb.de/|https://bbusse.github.io/seven-segment-clock/"
 readonly DEFAULT_URLS
-SCRIPT_NAME=$(basename $0)
+SCRIPT_NAME=$(basename "$0")
 readonly SCRIPT_NAME
 
 
@@ -20,12 +20,12 @@ log() {
         echo "$@" >&2
     fi
 
-    logger -p user.notice -t ${SCRIPT_NAME} "$@"
+    logger -p user.notice -t "${SCRIPT_NAME}" "$@"
 }
 
 error() {
     echo "$@" >&2
-    logger -p user.error -t ${SCRIPT_NAME} "$@"
+    logger -p user.error -t "${SCRIPT_NAME}" "$@"
 }
 
 if [[ -z $(command -v podman) ]]; then
